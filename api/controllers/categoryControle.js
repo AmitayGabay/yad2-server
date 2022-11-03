@@ -21,4 +21,4 @@ const categoryCtrl = {
     res.json(categories);
     }
 }
-module.exports =categoryCtrl
+module.exports =categoryCtrl;

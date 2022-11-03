@@ -12,7 +12,7 @@ const productCtrl = {
     },
     getProducts: async (req, res) => {
         let page = req.query.page || 1;
-        let limit = req.query.page || 10;
+        let limit = req.query.limit || 12;
         try {
             let products = await ProductModel.find({}).skip((page - 1) * limit).limit(limit).populate({ path: "category", select: "name" })
             res.json(products)

@@ -28,7 +28,7 @@ const userCtrl = {
             if (!await bcrypt.compare(user.password, myUser.password)) {
                 return res.json({ msg: "wrong password" })
             }
-            let token = jwt.sign({ id: myUser._id, role: myUser }, process.env.SECRET_KEY)
+            let token = jwt.sign({ id: myUser._id, role: myUser.role }, process.env.SECRET_KEY)
             res.json({ token })
         }
         catch (err) {
@@ -45,7 +45,7 @@ const userCtrl = {
         let product = [];
         try {
             let user = await UserModel.findOne({ _id: req.tokenPayload.id })
-            if (action == "plus") {
+            if (action === "plus") {
                 product = user.cart.find(item => {
                     if (item.id == productId) {
                         item.amount = item.amount + 1;
